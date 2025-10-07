@@ -8,19 +8,38 @@ using System.Threading.Tasks;
 
 namespace HEJM.Temperatura.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class TemperatureConverterTests
     {
-        [TestMethod()]
-        public void CelsiusToFahrenheitTest()
+        private readonly TemperatureConverter converter = new TemperatureConverter();
+
+        [TestMethod]
+        public void CelsiusToFahrenheit_ZeroCelsius_Returns32Fahrenheit()
         {
-            Assert.Fail();
+            double result = converter.CelsiusToFahrenheit(0);
+            Assert.AreEqual(32, result, 0.001);
         }
 
-        [TestMethod()]
-        public void FahrenheitToCelsiusTest()
+        [TestMethod]
+        public void FahrenheitToCelsius_32Fahrenheit_ReturnsZeroCelsius()
         {
-            Assert.Fail();
+            double result = converter.FahrenheitToCelsius(32);
+            Assert.AreEqual(0, result, 0.001);
+        }
+
+        [TestMethod]
+        public void CelsiusToFahrenheit_NegativeValue_ReturnsCorrectResult()
+        {
+            double result = converter.CelsiusToFahrenheit(-40);
+            Assert.AreEqual(-40, result, 0.001);
+        }
+
+        [TestMethod]
+        public void FahrenheitToCelsius_NegativeValue_ReturnsCorrectResult()
+        {
+            double result = converter.FahrenheitToCelsius(-40);
+            Assert.AreEqual(-40, result, 0.001);
         }
     }
+
 }
